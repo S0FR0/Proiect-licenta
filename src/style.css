@@ -1,0 +1,16 @@
+.form_container {
+  width: 30%;
+  border: 1px solid lightgray;
+}
+
+@media screen and (max-width: 1000) {
+  .form_container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 700) {
+  .form_container {
+    width: 65%;
+  }
+}
