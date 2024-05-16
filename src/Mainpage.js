@@ -13,7 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Mainpage() {
   const userName = localStorage.getItem("userName");
+  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  console.log(userName, userId)
 
   function handleLogout() {
     navigate("/");

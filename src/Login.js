@@ -35,7 +35,8 @@ const Login = () => {
         result.data.map((user) => {
           if (user.uname === formData.uname) {
             if (user.password === formData.password) {
-              localStorage.setItem("userName", user.uname);
+              localStorage.setItem("userName", formData.uname);
+              localStorage.setItem("userId", user.id);
               navigate("/mainpage");
             } else {
               isvalid = false;

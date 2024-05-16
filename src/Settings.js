@@ -3,45 +3,24 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Settings = () => {
-    
+
+
+    const userId = localStorage.getItem("userId");
     const navigate = useNavigate()
 
     function handleSettings() {
         navigate("/mainpage")
       }
-
-    const [formData, setFormData] = useState({
-        fname: "",
-        lname: "",
-        uname: "",
-        email: "",
-        password: "",
-    })
-
-    axios.get("http://localhost:8000/users/")
+    function logData(){
+    axios.get(`http://localhost:8000/users/${userId}`)
          .then((result) => {
-            result.data.map((user) => {
-                if(user.uname === formData.uname &&
-                   user.email === formData.email &&
-                   user.fname === formData.fname &&
-                   user.lname === formData.lname &&
-                   user.password === formData.password)
-                
-                axios.get(`http://localhost:8000/users/${user.id}`)
-                     .then((result) => {
-                        result.data.map((atribute) => {
-                            const userName = atribute.uname
-                            const userfName = atribute.fname
-                            const userlName = atribute.lname
-                            const userEmail = atribute.email
-                            const userPassword = atribute.password
-                            console.log(userEmail, userName, userfName, userlName, userPassword)
-                        })
-                        
-                     })
+            const username = result.data.uname
+            const firstname = result.data.fname
+            const lastname = result.data.lname
+            const iduser = result.data.id
 
-            })
-         })
+            console.log(username, firstname, lastname, iduser)
+            })}
     return(
         <div className="container my-5">
             <h1>
@@ -58,9 +37,9 @@ const Settings = () => {
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>Username</h6>
-                        <p>admin</p>
+                        <p>---</p>
                         </div>
-                        <button className="btn btn-primary my-2">Change</button>
+                        <button className="btn btn-primary my-2" onClick={logData}>Change</button>
                     </li>
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
