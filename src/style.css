@@ -14,3 +14,11 @@
     width: 65%;
   }
 }
+
+.password-toggle-icon{
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 1000;
+  cursor: pointer;
+}

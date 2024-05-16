@@ -58,7 +58,6 @@ const Signup = () => {
       axios
         .post("http://localhost:8000/users", formData)
         .then((result) => {
-          alert("Registered Succesfully");
           navigate("/");
         })
         .catch((err) => console.log(err));

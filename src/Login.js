@@ -36,15 +36,15 @@ const Login = () => {
           if (user.uname === formData.uname) {
             if (user.password === formData.password) {
               localStorage.setItem("userName", user.uname);
-              alert("Login succesfuly");
               navigate("/mainpage");
             } else {
               isvalid = false;
-              validationErrors.password = "Wrong password";
+              validationErrors.log = "Wrong password ";
             }
           } else if (formData.uname !== "") {
             isvalid = false;
-            validationErrors.uname = "Wrong user name";
+            if (!validationErrors.log)
+            validationErrors.log = "Wrong username";
           }
         });
         setErrors(validationErrors);
@@ -64,7 +64,7 @@ const Login = () => {
             <></>
           ) : (
             <span className="text-danger">
-              {errors.uname} {errors.password}
+              {errors.log}
             </span>
           )}
 

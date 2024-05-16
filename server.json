@@ -33,8 +33,35 @@
       "lname": "admin",
       "uname": "admin",
       "email": "admin@gmail.com",
-      "password": "admin123",
+      "password": "admin111",
       "cpassword": "admin123"
+    },
+    {
+      "id": "e17d",
+      "fname": "frgeg",
+      "lname": "gfdgdfgdfg",
+      "uname": "admin",
+      "email": "afewsf@gmail.com",
+      "password": "11111111",
+      "cpassword": "11111111"
+    },
+    {
+      "id": "55d3",
+      "fname": "frgeg",
+      "lname": "gfdgdfgdfg",
+      "uname": "admin",
+      "email": "afewsf@gmail.com",
+      "password": "11111111",
+      "cpassword": "11111111"
+    },
+    {
+      "id": "c12a",
+      "fname": "frgeg",
+      "lname": "gfdgdfgdfg",
+      "uname": "admin",
+      "email": "afewsf@gmail.com",
+      "password": "11111111",
+      "cpassword": "11111111"
     }
   ]
 }

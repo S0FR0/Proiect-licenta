@@ -35,7 +35,7 @@ const Reset = () => {
       .get("http://localhost:8000/users/")
       .then((result) => {
         result.data.map((user) => {
-          if (user.uname === formData.uname || user.email === formData.email) {
+          if (user.uname === formData.uname && user.email === formData.email) {
               const updatePassword = formData.password;
 
               axios
@@ -121,8 +121,8 @@ const Reset = () => {
           </div>
           <p className="text-end mt-2">
             Remembered the password?{" "}
-            <Link to="/signup" className="ms-2">
-              Sign up
+            <Link to="/" className="ms-2">
+              Sign in
             </Link>
           </p>
         </form>
