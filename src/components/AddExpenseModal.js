@@ -43,7 +43,7 @@ export default function AddExpenseModal({
               type="number"
               required
               min={0}
-              step={0.01}
+              step={1}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">

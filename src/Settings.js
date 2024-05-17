@@ -1,26 +1,52 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import DeleteModal from "./components/DeleteModal";
 import axios from "axios";
+import ChangeModal from "./components/ChangeEmailModal";
+import ChangePasswordModal from "./components/ChangePasswordModal";
+import ChangeUsernameModal from "./components/ChangeUsernameModal";
 
 const Settings = () => {
-
-
+    
+    const [deleteModalShow, setDeleteModalShow] = React.useState(false);
+    const [changeModalShow, setChangeModalShow] =  React.useState(false);
     const userId = localStorage.getItem("userId");
     const navigate = useNavigate()
 
     function handleSettings() {
         navigate("/mainpage")
       }
-    function logData(){
-    axios.get(`http://localhost:8000/users/${userId}`)
-         .then((result) => {
-            const username = result.data.uname
-            const firstname = result.data.fname
-            const lastname = result.data.lname
-            const iduser = result.data.id
 
-            console.log(username, firstname, lastname, iduser)
-            })}
+    const [ fetchData, setFetchData ] = useState({
+        id:"",
+        fname: "",
+        lname: "",
+        uname: "",
+        email: "",
+        password: "",
+    })
+
+      function logData(){
+        axios.get(`http://localhost:8000/users/${userId}`, fetchData)
+             .then((result) => {
+                setFetchData({
+                    ...fetchData,
+                    uname: result.data.uname,
+                    fname: result.data.fname,
+                    lname: result.data.lname,
+                    email: result.data.email,
+                    password: result.data.password,
+                    id: result.data.id
+                })
+            })
+            .catch((err) => {
+                console.error("Error fetching user data:", err);
+            });
+        }
+        useEffect(() => {
+            logData();
+        }, [fetchData]);
+
     return(
         <div className="container my-5">
             <h1>
@@ -37,34 +63,35 @@ const Settings = () => {
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>Username</h6>
-                        <p>---</p>
+                        <p>{fetchData.uname}</p>
                         </div>
-                        <button className="btn btn-primary my-2" onClick={logData}>Change</button>
+                        <ChangeUsernameModal />
                     </li>
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>Email</h6>
-                        <p>admin@gmail.com</p>
+                        <p>{fetchData.email}</p>
                         </div>
-                        <button className="btn btn-primary my-2">Change</button>
+                        <ChangeModal />
                     </li>
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>Password</h6>
-                        <p>admin</p>
+                        <p>{fetchData.password}</p>
                         </div>
-                        <button className="btn btn-primary my-2">Change</button>
+                        <ChangePasswordModal
+                        />
                     </li>
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>First name</h6>
-                        <p>admin</p>
+                        <p>{fetchData.fname}</p>
                         </div>
                     </li>
                     <li className="list-group-item d-flex">
                         <div className="me-auto">
                         <h6>Last name</h6>
-                        <p>admin</p>
+                        <p>{fetchData.lname}</p>
                         </div>
                     </li>
                     <li className="list-group-item d-flex">
@@ -72,9 +99,15 @@ const Settings = () => {
                         <h6>Delete user</h6>
                         <p>This will delete all data coresponding to youre account</p>
                         </div>
-                        <button className="btn btn-danger my-2">Delete</button>
+                        <button className="btn btn-danger my-2" onClick={() => setDeleteModalShow(true)}>Delete</button>
                     </li>
                 </ul>
+
+                <DeleteModal
+                show={deleteModalShow}
+                onHide={() => setDeleteModalShow(false)}
+                />
+
             </div>
         </div>
     )

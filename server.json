@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "id": "226b",
-      "fname": "safasfasf",
-      "lname": "sfaasfasf",
-      "uname": "Pula",
-      "email": "dsfsd@gmail.com",
-      "password": "",
-      "cpassword": "12345678"
-    },
-    {
       "id": "44c8",
       "fname": "fsdfsdf",
       "lname": "dsfsdfsd",
@@ -17,24 +8,6 @@
       "email": "dsfsd@gmail.com",
       "password": "2222222222222222222",
       "cpassword": "12345678"
-    },
-    {
-      "id": "1a46",
-      "fname": "Cosmin",
-      "lname": "Chindris",
-      "uname": "Cosminel",
-      "email": "sdfsdfsd@gmail.com",
-      "password": "12345678",
-      "cpassword": "12345678"
-    },
-    {
-      "id": "236b",
-      "fname": "admin",
-      "lname": "admin",
-      "uname": "admin",
-      "email": "admin@gmail.com",
-      "password": "admin111",
-      "cpassword": "admin123"
     },
     {
       "id": "e17d",
@@ -53,42 +26,6 @@
       "email": "afewsf@gmail.com",
       "password": "11111111",
       "cpassword": "11111111"
-    },
-    {
-      "id": "c12a",
-      "fname": "frgeg",
-      "lname": "gfdgdfgdfg",
-      "uname": "admin",
-      "email": "afewsf@gmail.com",
-      "password": "11111111",
-      "cpassword": "11111111"
-    },
-    {
-      "id": "c6c6",
-      "fname": "Banica",
-      "lname": "Stefan Jr.",
-      "uname": "muzicaeviatamea",
-      "email": "banicastefanjr@yahoo.ro",
-      "password": "cinecitestepulaobeleste",
-      "cpassword": "cinecitestepulaobeleste"
-    },
-    {
-      "id": "c384",
-      "fname": "admina",
-      "lname": "admin",
-      "uname": "admin",
-      "email": "admina@gmail.com",
-      "password": "admin111",
-      "cpassword": "admin111"
-    },
-    {
-      "id": "edfe",
-      "fname": "admina",
-      "lname": "admina",
-      "uname": "admina",
-      "email": "admina@gmail.com",
-      "password": "admin111",
-      "cpassword": "admin111"
     }
   ]
 }
