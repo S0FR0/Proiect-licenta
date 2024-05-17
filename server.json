@@ -1,31 +1,4 @@
 {
   "users": [
-    {
-      "id": "44c8",
-      "fname": "fsdfsdf",
-      "lname": "dsfsdfsd",
-      "uname": "dfdffd",
-      "email": "dsfsd@gmail.com",
-      "password": "2222222222222222222",
-      "cpassword": "12345678"
-    },
-    {
-      "id": "e17d",
-      "fname": "frgeg",
-      "lname": "gfdgdfgdfg",
-      "uname": "admin",
-      "email": "afewsf@gmail.com",
-      "password": "11111111",
-      "cpassword": "11111111"
-    },
-    {
-      "id": "55d3",
-      "fname": "frgeg",
-      "lname": "gfdgdfgdfg",
-      "uname": "admin",
-      "email": "afewsf@gmail.com",
-      "password": "11111111",
-      "cpassword": "11111111"
-    }
   ]
 }
