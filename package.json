@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "proiect-licenta",
+    "start": "react-scripts start",
     "server": "npx json-server --watch server.json --port 8000",
     "build": "react-scripts build",
     "test": "react-scripts test",
