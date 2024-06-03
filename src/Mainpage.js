@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, NavDropdown, Navbar, Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddBudgetModal from "./components/AddBudgetModal";
@@ -10,12 +10,13 @@ import TotalBudgetCard from "./components/TotalBudgetCard";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Mainpage() {
   const userName = localStorage.getItem("userName");
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
-  console.log(userName, userId)
+
 
   function handleLogout() {
     navigate("/");
@@ -24,6 +25,10 @@ export default function Mainpage() {
 
   function handleSettings() {
     navigate("/settings")
+  }
+
+  function handleChart() {
+    navigate("/chart");
   }
 
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -36,6 +41,26 @@ export default function Mainpage() {
     setShowAddExpenseModal(true);
     setAddExpenseModalBudgetId(budgetId);
   }
+
+  const [ data, setData] = useState([])
+  
+  useEffect(() => {
+    axios.get("http://localhost:8000/cards")
+         .then((result) => {
+          setData(result.data)
+    })
+         .catch((err) => console.log(err));
+  }, [])
+
+  const [ expenses, setExpenses] = useState([])
+  
+  useEffect(() => {
+    axios.get("http://localhost:8000/expenses")
+         .then((result) => {
+          setExpenses(result.data)
+    })
+         .catch((err) => console.log(err));
+  }, [])
 
   return (
     <>
@@ -54,6 +79,9 @@ export default function Mainpage() {
               <NavDropdown.Item variant="outline-urgent" onClick={handleSettings}>
                 Settings
               </NavDropdown.Item>
+              <NavDropdown.Item variant="outline-urgent" onClick={handleChart}>
+                Chart
+              </NavDropdown.Item>
               <NavDropdown.Item variant="outline-urgent" onClick={handleLogout}>
                 Log Out
               </NavDropdown.Item>
@@ -67,18 +95,21 @@ export default function Mainpage() {
             gap: "1rem",
             alignItems: "flex-start",
           }}
-        >
-          {budgets.map((budget) => {
-            const amount = getBudgetExpenses(budget.id).reduce(
-              (total, expense) => total + expense.amount,
-              0,
-            );
+        >   
+          {data.map((budget) => {
+            let sum = 0
+            if (budget.userId == userId)
+            {expenses.map((expenses) => {
+              if (expenses.userId == userId && expenses.budgetcard == budget.name)
+                sum = sum + parseFloat(expenses.amount)
+
+            })}
             return (
               <BudgetCard
                 key={budget.id}
                 name={budget.name}
-                amount={amount}
-                max={budget.max}
+                amount={sum}
+                max={budget.budget}
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() =>
                   setViewExpensesModalBudgetId(budget.id)

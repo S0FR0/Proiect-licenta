@@ -7,15 +7,32 @@ import { useNavigate } from 'react-router-dom';
 function DeleteModal(props, ) {
     
     const navigate = useNavigate()
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId")
+
+    const cards = localStorage.getItem("cards")
 
     function deleteUser() {
         axios.delete(`http://localhost:8000/users/${userId}`)
         .catch((error) => {
             console.error("Error deleting user:", error);
+       })
+        axios.get(`http://localhost:8000/cards/`)
+        .then((result) => {
+          result.data.map((card) => {
+            if(card.userId === userId)
+              axios.delete(`http://localhost:8000/cards/${card.id}`)
+          })
+        })
+        axios.get(`http://localhost:8000/expenses/`)
+        .then((result) => {
+          result.data.map((expense) => {
+            if(expense.userId === userId)
+              axios.delete(`http://localhost:8000/expenses/${expense.id}`)
+          })
         })
         navigate('/')
     }
+  
 
   return (
     <Modal

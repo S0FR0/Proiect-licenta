@@ -1,11 +1,40 @@
-import { useBudgets } from "../contexts/BudgetsContext";
+import { useEffect, useState } from "react";
 import BudgetCard from "./BudgetCard";
+import axios from "axios";
 
 export default function TotalBudgetCard() {
-  const { expenses, budgets } = useBudgets();
-  const amount = expenses.reduce((total, expense) => total + expense.amount, 0);
-  const max = budgets.reduce((total, budget) => total + budget.max, 0);
-  if (max === 0) return null;
+  
+  let totalExpenses = 0
 
-  return <BudgetCard amount={amount} name="Total" gray max={max} hideButtons />;
+  let total = 0
+
+  const [ data, setData] = useState([])
+  
+  useEffect(() => {
+    axios.get("http://localhost:8000/cards")
+         .then((result) => {
+          setData(result.data)
+    })
+         .catch((err) => console.log(err));
+  }, [])
+
+  data.map((expense) => {
+    total += parseFloat(expense.budget)
+  })
+
+  const [ expenses, setExpenses] = useState([])
+  
+  useEffect(() => {
+    axios.get("http://localhost:8000/expenses")
+         .then((result) => {
+          setExpenses(result.data)
+    })
+         .catch((err) => console.log(err));
+  }, [])
+
+  expenses.map((expense) => {
+    totalExpenses += parseFloat(expense.amount)
+  })
+
+  return <BudgetCard amount={totalExpenses} name="Total" gray max={total} hideButtons />;
 }

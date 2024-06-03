@@ -1,4 +1,87 @@
 {
   "users": [
+    {
+      "id": "cb8a",
+      "fname": "Sofronea",
+      "lname": "Carlos-Marian",
+      "uname": "Carlos",
+      "email": "sofronea.carlos-marian@student.tuiasi.ro",
+      "password": "12345678",
+      "cpassword": "12345678"
+    }
+  ],
+  "cards": [
+    {
+      "id": "1e7b",
+      "userId": "cb8a",
+      "name": "hdgffgdh",
+      "budget": "534345",
+      "sum": 0
+    },
+    {
+      "id": "abe8",
+      "userId": "cb8a",
+      "name": "dcvbdfgbfds",
+      "budget": "4234",
+      "sum": 0
+    }
+  ],
+  "expenses": [
+    {
+      "id": "21ee",
+      "description": "sdf",
+      "userId": "cb8a",
+      "budgetcard": "dcvbdfgbfds",
+      "amount": "22"
+    },
+    {
+      "id": "2c89",
+      "description": "sdfg",
+      "userId": "cb8a",
+      "budgetcard": "dcvbdfgbfds",
+      "amount": "100"
+    },
+    {
+      "id": "b4f2",
+      "description": "sdfsdf",
+      "userId": "cb8a",
+      "budgetcard": "",
+      "amount": "432"
+    },
+    {
+      "id": "eec0",
+      "description": "sfsdf",
+      "userId": "cb8a",
+      "budgetcard": "hdgffgdh",
+      "amount": "342"
+    },
+    {
+      "id": "07c9",
+      "description": "ger",
+      "userId": "cb8a",
+      "budgetcard": "hdgffgdh",
+      "amount": "38"
+    },
+    {
+      "id": "5ee5",
+      "description": "werw",
+      "userId": "cb8a",
+      "budgetcard": "dcvbdfgbfds",
+      "amount": "3333"
+    },
+    {
+      "id": "821c",
+      "description": "qdw",
+      "userId": "cb8a",
+      "budgetcard": "hdgffgdh",
+      "amount": "100"
+    },
+    {
+      "id": "d092",
+      "description": "rseg",
+      "userId": "cb8a",
+      "budgetcard": "hdgffgdh",
+      "amount": "100"
+    }
   ]
 }

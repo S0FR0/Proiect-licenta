@@ -4,6 +4,7 @@ import Signup from "./Signup";
 import Mainpage from "./Mainpage";
 import Reset from "./Forgotpassword";
 import Settings from "./Settings"
+import Piechart from "./Chart";
 
 function ProtectedRoute({ children }) {
   const isLoggedIn =
@@ -25,6 +26,7 @@ function App() {
         <Route path="/mainpage" element={<ProtectedRoute><Mainpage /></ProtectedRoute>} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/chart" element={<Piechart />} />
       </Routes>
     </BrowserRouter>
   );
