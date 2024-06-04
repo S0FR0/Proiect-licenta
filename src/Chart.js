@@ -15,16 +15,24 @@ function Piechart()
         navigate("/mainpage")
     }
 
-    const [ data, setData] = useState([])
+    const [labels, setLabels] = useState([]);
   
     useEffect(() => {
-      axios.get("http://localhost:8000/cards")
-           .then((result) => {
-            setData(result.data)
-      })
-           .catch((err) => console.log(err));
-    }, [])
+        axios.get("http://localhost:8000/cards")
+             .then((result) => {
+                const newLabels = result.data
+                .filter(item => item.userId === userId)
+                .map(item => item.name);
+                setLabels(newLabels);
+             })
+             .catch((err) => console.log(err));
+    }, []);
+  
+    useEffect(() => {
+        console.log(labels);
+    }, [labels]);
 
+    console.log(labels)
     return(
         <React.Fragment>
             <div className="container my-5 vh-100 vw-100">
@@ -43,10 +51,11 @@ function Piechart()
                 width={600}
                 height={600}
 
-                series={[23, 43, 50]}
+                series={[23, 43]}
 
                 options={ {
-                    labels:['India','USA', 'Ro']
+                    labels: labels
+                
                 }
                 }
                 >

@@ -8,80 +8,89 @@
       "email": "sofronea.carlos-marian@student.tuiasi.ro",
       "password": "12345678",
       "cpassword": "12345678"
+    },
+    {
+      "id": "add4",
+      "fname": "admin123",
+      "lname": "admin123",
+      "uname": "Admin",
+      "email": "adminul@gmail.com",
+      "password": "12345678",
+      "cpassword": "12345678"
     }
   ],
   "cards": [
     {
-      "id": "1e7b",
+      "id": "f9c9",
       "userId": "cb8a",
-      "name": "hdgffgdh",
-      "budget": "534345",
+      "name": "Card1",
+      "budget": "123",
       "sum": 0
     },
     {
-      "id": "abe8",
+      "id": "0778",
+      "userId": "add4",
+      "name": "Card2",
+      "budget": "123",
+      "sum": 0
+    },
+    {
+      "id": "c170",
       "userId": "cb8a",
-      "name": "dcvbdfgbfds",
-      "budget": "4234",
+      "name": "Card3",
+      "budget": "2222",
+      "sum": 0
+    },
+    {
+      "id": "78be",
+      "userId": "add4",
+      "name": "Card4",
+      "budget": "1000",
       "sum": 0
     }
   ],
   "expenses": [
     {
-      "id": "21ee",
-      "description": "sdf",
+      "id": "b82c",
+      "description": "Expense1",
       "userId": "cb8a",
-      "budgetcard": "dcvbdfgbfds",
-      "amount": "22"
-    },
-    {
-      "id": "2c89",
-      "description": "sdfg",
-      "userId": "cb8a",
-      "budgetcard": "dcvbdfgbfds",
+      "budgetcard": "Card1",
       "amount": "100"
     },
     {
-      "id": "b4f2",
+      "id": "2e3f",
+      "description": "Expense1",
+      "userId": "cb8a",
+      "budgetcard": "Card2",
+      "amount": "123"
+    },
+    {
+      "id": "4c3d",
+      "description": "ffewf",
+      "userId": "add4",
+      "budgetcard": "Card2",
+      "amount": "33"
+    },
+    {
+      "id": "cfe9",
+      "description": "wefew",
+      "userId": "add4",
+      "budgetcard": "Card2",
+      "amount": "33"
+    },
+    {
+      "id": "d737",
+      "description": "sdfsdf",
+      "userId": "add4",
+      "budgetcard": "Card4",
+      "amount": "5555"
+    },
+    {
+      "id": "b83d",
       "description": "sdfsdf",
       "userId": "cb8a",
-      "budgetcard": "",
-      "amount": "432"
-    },
-    {
-      "id": "eec0",
-      "description": "sfsdf",
-      "userId": "cb8a",
-      "budgetcard": "hdgffgdh",
-      "amount": "342"
-    },
-    {
-      "id": "07c9",
-      "description": "ger",
-      "userId": "cb8a",
-      "budgetcard": "hdgffgdh",
-      "amount": "38"
-    },
-    {
-      "id": "5ee5",
-      "description": "werw",
-      "userId": "cb8a",
-      "budgetcard": "dcvbdfgbfds",
-      "amount": "3333"
-    },
-    {
-      "id": "821c",
-      "description": "qdw",
-      "userId": "cb8a",
-      "budgetcard": "hdgffgdh",
-      "amount": "100"
-    },
-    {
-      "id": "d092",
-      "description": "rseg",
-      "userId": "cb8a",
-      "budgetcard": "hdgffgdh",
-      "amount": "100"
+      "budgetcard": "Card3",
+      "amount": "355"
     }
   ]
 }

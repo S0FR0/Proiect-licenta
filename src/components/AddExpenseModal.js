@@ -48,7 +48,7 @@ export default function AddExpenseModal({
            .catch((err) => console.log(err));
     }, [])
   
-  
+    let vari = (data.filter((card) => card.userId === userId))
 
   return (
     <Modal show={show} onHide={handleClose} onExit={reload}>
@@ -84,11 +84,11 @@ export default function AddExpenseModal({
             <Form.Select
             onChange={(e) =>
               setFormData({ ...formData, budgetcard: e.target.value })
-            }
+            } placeholder="Choose" defaultValue={null}
             >
-              <option>Chose</option>
-              {data.map((budget) => (
-                <option key={budget.id} value={budget.name}>
+              <option>Choose</option>
+              {vari.map((budget) => (
+                <option key={budget.id} value={budget.name} >
                   {budget.name}
                 </option>
               ))}

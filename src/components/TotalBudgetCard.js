@@ -4,6 +4,8 @@ import axios from "axios";
 
 export default function TotalBudgetCard() {
   
+  const userId = localStorage.getItem("userId");
+
   let totalExpenses = 0
 
   let total = 0
@@ -12,6 +14,7 @@ export default function TotalBudgetCard() {
   
   useEffect(() => {
     axios.get("http://localhost:8000/cards")
+          
          .then((result) => {
           setData(result.data)
     })
@@ -19,6 +22,7 @@ export default function TotalBudgetCard() {
   }, [])
 
   data.map((expense) => {
+    if(expense.userId === userId)
     total += parseFloat(expense.budget)
   })
 
@@ -27,12 +31,14 @@ export default function TotalBudgetCard() {
   useEffect(() => {
     axios.get("http://localhost:8000/expenses")
          .then((result) => {
+          if(result.data.userId === userId)
           setExpenses(result.data)
     })
          .catch((err) => console.log(err));
   }, [])
 
   expenses.map((expense) => {
+    if(expense.userId === userId)
     totalExpenses += parseFloat(expense.amount)
   })
 

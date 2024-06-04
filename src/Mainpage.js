@@ -17,6 +17,8 @@ export default function Mainpage() {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
+  const cards = []
+  const expense = []
 
   function handleLogout() {
     navigate("/");
@@ -43,7 +45,9 @@ export default function Mainpage() {
   }
 
   const [ data, setData] = useState([])
-  
+  const [ expenses, setExpenses] = useState([])
+
+
   useEffect(() => {
     axios.get("http://localhost:8000/cards")
          .then((result) => {
@@ -52,7 +56,6 @@ export default function Mainpage() {
          .catch((err) => console.log(err));
   }, [])
 
-  const [ expenses, setExpenses] = useState([])
   
   useEffect(() => {
     axios.get("http://localhost:8000/expenses")
@@ -61,6 +64,12 @@ export default function Mainpage() {
     })
          .catch((err) => console.log(err));
   }, [])
+
+  
+  let vari = (data.filter((card) => card.userId === userId))
+  let filteredExpenses = expenses.filter((exp) => {
+    return vari.some((card) => exp.userId === userId && exp.budgetcard === card.name);
+  });
 
   return (
     <>
@@ -96,27 +105,26 @@ export default function Mainpage() {
             alignItems: "flex-start",
           }}
         >   
-          {data.map((budget) => {
+          {vari.map((card) => {
             let sum = 0
-            if (budget.userId == userId)
-            {expenses.map((expenses) => {
-              if (expenses.userId == userId && expenses.budgetcard == budget.name)
-                sum = sum + parseFloat(expenses.amount)
-
-            })}
-            return (
-              <BudgetCard
-                key={budget.id}
-                name={budget.name}
-                amount={sum}
-                max={budget.budget}
-                onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-                onViewExpensesClick={() =>
-                  setViewExpensesModalBudgetId(budget.id)
+            filteredExpenses.map((expense) => {
+              if(card.name === expense.budgetcard)
+              sum += parseFloat(expense.amount)
+            })
+                 return (
+                  <BudgetCard
+                    key={card.id}
+                    name={card.name}
+                    amount={sum}
+                    max={card.budget}
+                    onAddExpenseClick={() => openAddExpenseModal(card.id)}
+                    onViewExpensesClick={() => setViewExpensesModalBudgetId(card.id)}
+                  />);
+                })
                 }
-              />
-            );
-          })}
+
+
+
           <UncategorizedBudgetCard
             onAddExpenseClick={openAddExpenseModal}
             onViewExpensesClick={() =>
