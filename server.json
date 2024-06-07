@@ -35,17 +35,10 @@
       "sum": 0
     },
     {
-      "id": "c170",
-      "userId": "cb8a",
-      "name": "Card3",
-      "budget": "2222",
-      "sum": 0
-    },
-    {
-      "id": "78be",
+      "id": "769c",
       "userId": "add4",
       "name": "Card4",
-      "budget": "1000",
+      "budget": "444444",
       "sum": 0
     }
   ],
@@ -91,6 +84,30 @@
       "userId": "cb8a",
       "budgetcard": "Card3",
       "amount": "355"
+    },
+    {
+      "id": "e4ac",
+      "description": "fdgg",
+      "userId": "add4",
+      "budgetcard": "Card4",
+      "budgetId": "",
+      "amount": "345"
+    },
+    {
+      "id": "5b24",
+      "description": "rgs",
+      "userId": "add4",
+      "budgetcard": "Card2",
+      "budgetId": "",
+      "amount": "43"
+    },
+    {
+      "id": "a11f",
+      "description": "dsav",
+      "userId": "add4",
+      "budgetcard": "Card2",
+      "budgetId": "",
+      "amount": "32"
     }
   ]
 }

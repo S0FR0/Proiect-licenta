@@ -1,15 +1,10 @@
 import { Form, Modal, Button } from "react-bootstrap";
 import { useRef, useState, useEffect } from "react";
-import {
-  useBudgets,
-  UNCATEGORIZED_BUDGET_ID,
-} from "../contexts/BudgetsContext";
 import axios from "axios";
 
 export default function AddExpenseModal({
   show,
   handleClose,
-  defaultBudgetId,
 }) {
 
   const reload=()=>{
@@ -18,15 +13,11 @@ export default function AddExpenseModal({
 
   const userId = localStorage.getItem("userId");
 
-  const descriptionRef = useRef();
-  const amountRef = useRef();
-  const budgetIdRef = useRef();
-  const { addExpense, budgets } = useBudgets();
-
   const [ formData, setFormData ] = useState({
     description: "",
     userId: `${userId}`,
     budgetcard: ``,
+    budgetId: "",
     amount: ""
   })
 
@@ -37,18 +28,22 @@ export default function AddExpenseModal({
   }
 
   const [ data, setData] = useState([])
-  const [ selectedData, setSelectedData ] = useState(null)
 
   useEffect(() => {
   axios.get(`http://localhost:8000/cards`)
        .then((result) => {
         setData(result.data)
-        setSelectedData(result.data[0])
       })
            .catch((err) => console.log(err));
     }, [])
-  
+
     let vari = (data.filter((card) => card.userId === userId))
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      axios.post("http://localhost:8000/expenses", formData)   
+      handleClose();
+    }
 
   return (
     <Modal show={show} onHide={handleClose} onExit={reload}>

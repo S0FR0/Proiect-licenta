@@ -123,14 +123,6 @@ export default function Mainpage() {
                 })
                 }
 
-
-
-          <UncategorizedBudgetCard
-            onAddExpenseClick={openAddExpenseModal}
-            onViewExpensesClick={() =>
-              setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
-            }
-          />
           <TotalBudgetCard />
         </div>
       </Container>

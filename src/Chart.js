@@ -15,6 +15,8 @@ function Piechart()
         navigate("/mainpage")
     }
 
+    let values = []
+
     const [labels, setLabels] = useState([]);
   
     useEffect(() => {
@@ -29,10 +31,29 @@ function Piechart()
     }, []);
   
     useEffect(() => {
-        console.log(labels);
     }, [labels]);
 
-    console.log(labels)
+    const [expense, setExpense] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/expenses")
+             .then((result) => {
+                setExpense(result.data);
+             })
+             .catch((err) => console.log(err));
+    }, []);
+
+    labels.forEach((label) => {
+        let sum = 0
+        expense.map((exp) => {
+            if(exp.userId === userId && exp.budgetcard === label)
+                sum += parseFloat(exp.amount)
+        })
+        values.push(sum)
+    })
+
+    console.log(values)
+
     return(
         <React.Fragment>
             <div className="container my-5 vh-100 vw-100">
@@ -51,7 +72,7 @@ function Piechart()
                 width={600}
                 height={600}
 
-                series={[23, 43]}
+                series={values}
 
                 options={ {
                     labels: labels

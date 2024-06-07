@@ -4,10 +4,15 @@ import {
   useBudgets,
 } from "../contexts/BudgetsContext";
 import { currencyFormatter } from "../utils";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ViewExpensesModal({ budgetId, handleClose }) {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
     useBudgets();
+
+    const userId = localStorage.getItem("userId")
+    let cardNamee
 
   const expenses = getBudgetExpenses(budgetId);
   const budget =
@@ -15,17 +20,53 @@ export default function ViewExpensesModal({ budgetId, handleClose }) {
       ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID }
       : budgets.find((b) => b.id === budgetId);
 
+  const [card, setCard] = useState([]);
+  
+    useEffect(() => {
+        axios.get("http://localhost:8000/cards")
+             .then((result) => {
+                  setCard(result.data)
+             })
+             .catch((err) => console.log(err));
+    }, []);
+
+    let cardName = card.map((item) => {
+      if(item.id === budgetId)
+        return item.name
+    })
+
+    function deleteCard() {
+    axios.get(`http://localhost:8000/cards/`)
+        .then((result) => {
+          result.data.map((card) => {
+            console.log(card.id)
+            console.log(budgetId)
+            if(card.id === budgetId && card.userId === userId){
+              axios.delete(`http://localhost:8000/cards/${card.id}`)}
+            
+          })
+        })
+        axios.get(`http://localhost:8000/expenses/`)
+        .then((result) => {
+          result.data.map((expense) => {
+            if(expense.budgetId === budgetId && expense.userId === userId)
+              axios.delete(`http://localhost:8000/expenses/${expense.id}`)
+          })
+        })
+        {window.location.reload();}
+        handleClose();
+      }
+
   return (
     <Modal show={budgetId != null} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
-            <div>Expenses - {budget?.name}</div>
+            <div>Expenses - {cardName}</div>
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
               <Button
                 onClick={() => {
-                  deleteBudget(budget);
-                  handleClose();
+                  deleteCard();
                 }}
                 variant="outline-danger"
               >
