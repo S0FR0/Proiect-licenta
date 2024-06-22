@@ -22,7 +22,13 @@ function ChangeUsernameModal() {
     e.preventDefault()
     let isvalid = true;
     let validationErrors = {};
-  setErrors(validationErrors);
+    setErrors(validationErrors);
+    setValid(isvalid);
+    if (formData.uname === "" || formData.uname === null) {
+      isvalid = false;
+      validationErrors.uname = "User name is required";
+    }
+    setErrors(validationErrors);
     setValid(isvalid);
     if (Object.keys(validationErrors).length === 0) {
   axios
@@ -48,6 +54,13 @@ function ChangeUsernameModal() {
       >
         <Modal.Body>
         <Modal.Title className='mb-4'>Change username</Modal.Title>
+        {valid ? (
+            <></>
+          ) : (
+            <span className="text-danger">
+              {errors.uname}
+            </span>
+          )}
           <Form onSubmit={handleSubmit}>
               <Form.Control
                 type="text"

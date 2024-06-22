@@ -70,14 +70,14 @@ const Login = () => {
           )}
 
           <div className="mb-2">
-            <label>User Name</label>
+            <label>Username</label>
             <input
               name="uname"
               onChange={(e) =>
                 setFormData({ ...formData, uname: e.target.value })
               }
               type="text"
-              placeholder="Enter User Name"
+              placeholder="Enter Username"
               className="form-control"
             />
           </div>

@@ -1,5 +1,5 @@
 import { Form, Modal, Button } from "react-bootstrap";
-import { useRef, useState, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import axios from "axios";
 
 export default function AddExpenseModal({
@@ -16,8 +16,7 @@ export default function AddExpenseModal({
   const [ formData, setFormData ] = useState({
     description: "",
     userId: `${userId}`,
-    budgetcard: ``,
-    budgetId: "",
+    budgetId: ``,
     amount: ""
   })
 
@@ -78,12 +77,12 @@ export default function AddExpenseModal({
             <Form.Label>Budget</Form.Label>
             <Form.Select
             onChange={(e) =>
-              setFormData({ ...formData, budgetcard: e.target.value })
+              setFormData({ ...formData, budgetId: e.target.value })
             } placeholder="Choose" defaultValue={null}
             >
               <option>Choose</option>
               {vari.map((budget) => (
-                <option key={budget.id} value={budget.name} >
+                <option key={budget.id} value={budget.id} >
                   {budget.name}
                 </option>
               ))}

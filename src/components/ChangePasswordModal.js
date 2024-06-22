@@ -22,7 +22,16 @@ function ChangePasswordModal() {
     e.preventDefault()
     let isvalid = true;
     let validationErrors = {};
-  setErrors(validationErrors);
+    setErrors(validationErrors);
+    setValid(isvalid);
+    if (formData.password === "" || formData.password === null) {
+      isvalid = false;
+      validationErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      isvalid = false;
+      validationErrors.password = "Password at least 8 char";
+    }
+    setErrors(validationErrors);
     setValid(isvalid);
     if (Object.keys(validationErrors).length === 0) {
   axios
@@ -48,6 +57,13 @@ function ChangePasswordModal() {
       >
         <Modal.Body>
         <Modal.Title className='mb-4'>Change password</Modal.Title>
+        {valid ? (
+            <></>
+          ) : (
+            <span className="text-danger">
+              {errors.password}
+            </span>
+          )}
           <Form onSubmit={handleSubmit}>
               <Form.Control
                 type="text"

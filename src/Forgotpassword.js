@@ -20,7 +20,7 @@ const Reset = () => {
     let validationErrors = {};
     if (formData.uname === "" || formData.uname === null) {
       isvalid = false;
-      validationErrors.uname = "User name not entered";
+      validationErrors.uname = "Username not entered";
     }
     if (formData.email === "" || formData.email === null) {
       isvalid = false;
@@ -74,14 +74,14 @@ const Reset = () => {
           )}
 
           <div className="mb-2">
-            <label>User Name</label>
+            <label>Username</label>
             <input
               name="uname"
               onChange={(e) =>
                 setFormData({ ...formData, uname: e.target.value })
               }
               type="text"
-              placeholder="Enter User Name"
+              placeholder="Enter Username"
               className="form-control"
             />
           </div>

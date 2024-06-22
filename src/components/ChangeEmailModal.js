@@ -52,6 +52,13 @@ function ChangeEmailModal() {
       >
         <Modal.Body>
         <Modal.Title className='mb-4'>Change email</Modal.Title>
+        {valid ? (
+            <></>
+          ) : (
+            <span className="text-danger">
+              {errors.email}
+            </span>
+          )}
           <Form onSubmit={handleSubmit}>
               <Form.Control
                 type="email"

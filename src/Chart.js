@@ -28,10 +28,27 @@ function Piechart()
                 setLabels(newLabels);
              })
              .catch((err) => console.log(err));
-    }, []);
+    });
   
     useEffect(() => {
     }, [labels]);
+
+    const [ids, setIds] = useState([]);
+  
+    useEffect(() => {
+        axios.get("http://localhost:8000/cards")
+             .then((result) => {
+                const newIds = result.data
+                .filter(item => item.userId === userId)
+                .map(item => item.id);
+                setIds(newIds);
+             })
+             .catch((err) => console.log(err));
+    }, []);
+  
+    useEffect(() => {
+    }, [ids]);
+
 
     const [expense, setExpense] = useState([]);
 
@@ -43,20 +60,18 @@ function Piechart()
              .catch((err) => console.log(err));
     }, []);
 
-    labels.forEach((label) => {
+    ids.forEach((id) => {
         let sum = 0
-        expense.map((exp) => {
-            if(exp.userId === userId && exp.budgetcard === label)
+        expense.forEach((exp) => {
+            if(exp.userId === userId && exp.budgetId === id)
                 sum += parseFloat(exp.amount)
         })
         values.push(sum)
     })
 
-    console.log(values)
-
     return(
         <React.Fragment>
-            <div className="container my-5 vh-100 vw-100">
+            <div className="container my-5">
             <h1>
                 <span>
                     <button className ="btn btn-primary" onClick={handleChart}>
@@ -71,16 +86,9 @@ function Piechart()
                 type="pie"
                 width={600}
                 height={600}
-
                 series={values}
-
-                options={ {
-                    labels: labels
-                
-                }
-                }
+                options={ {labels: labels} }
                 >
-
                 </Chart>
             </div>
             </div>

@@ -1,113 +1,89 @@
 {
   "users": [
     {
-      "id": "cb8a",
+      "id": "c67f",
       "fname": "Sofronea",
       "lname": "Carlos-Marian",
       "uname": "Carlos",
       "email": "sofronea.carlos-marian@student.tuiasi.ro",
-      "password": "12345678",
+      "password": "11111111",
       "cpassword": "12345678"
     },
     {
-      "id": "add4",
-      "fname": "admin123",
-      "lname": "admin123",
+      "id": "81f9",
+      "fname": "Admin",
+      "lname": "Admin",
       "uname": "Admin",
-      "email": "adminul@gmail.com",
+      "email": "admin@gmail.com",
       "password": "12345678",
       "cpassword": "12345678"
     }
   ],
   "cards": [
     {
-      "id": "f9c9",
-      "userId": "cb8a",
-      "name": "Card1",
-      "budget": "123",
+      "id": "3796",
+      "userId": "81f9",
+      "name": "Groceries",
+      "budget": "400",
       "sum": 0
     },
     {
-      "id": "0778",
-      "userId": "add4",
-      "name": "Card2",
-      "budget": "123",
+      "id": "321c",
+      "userId": "81f9",
+      "name": "Card3",
+      "budget": "400",
       "sum": 0
     },
     {
-      "id": "769c",
-      "userId": "add4",
+      "id": "7828",
+      "userId": "81f9",
       "name": "Card4",
-      "budget": "444444",
+      "budget": "400",
+      "sum": 0
+    },
+    {
+      "id": "bca7",
+      "userId": "c67f",
+      "name": "as",
+      "budget": "2112",
+      "sum": 0
+    },
+    {
+      "id": "9cf2",
+      "userId": "c67f",
+      "name": "dfg",
+      "budget": "3443",
       "sum": 0
     }
   ],
   "expenses": [
     {
-      "id": "b82c",
+      "id": "de46",
       "description": "Expense1",
-      "userId": "cb8a",
-      "budgetcard": "Card1",
+      "userId": "81f9",
+      "budgetId": "3796",
       "amount": "100"
     },
     {
-      "id": "2e3f",
+      "id": "0f0f",
       "description": "Expense1",
-      "userId": "cb8a",
-      "budgetcard": "Card2",
-      "amount": "123"
+      "userId": "81f9",
+      "budgetId": "321c",
+      "amount": "300"
     },
     {
-      "id": "4c3d",
-      "description": "ffewf",
-      "userId": "add4",
-      "budgetcard": "Card2",
-      "amount": "33"
+      "id": "21f6",
+      "description": "Expense1",
+      "userId": "81f9",
+      "budgetId": "7828",
+      "amount": "401"
     },
     {
-      "id": "cfe9",
-      "description": "wefew",
-      "userId": "add4",
-      "budgetcard": "Card2",
-      "amount": "33"
-    },
-    {
-      "id": "d737",
-      "description": "sdfsdf",
-      "userId": "add4",
-      "budgetcard": "Card4",
-      "amount": "5555"
-    },
-    {
-      "id": "b83d",
-      "description": "sdfsdf",
-      "userId": "cb8a",
-      "budgetcard": "Card3",
-      "amount": "355"
-    },
-    {
-      "id": "e4ac",
-      "description": "fdgg",
-      "userId": "add4",
-      "budgetcard": "Card4",
-      "budgetId": "",
-      "amount": "345"
-    },
-    {
-      "id": "5b24",
-      "description": "rgs",
-      "userId": "add4",
-      "budgetcard": "Card2",
-      "budgetId": "",
-      "amount": "43"
-    },
-    {
-      "id": "a11f",
-      "description": "dsav",
-      "userId": "add4",
-      "budgetcard": "Card2",
-      "budgetId": "",
-      "amount": "32"
+      "id": "3739",
+      "description": "dasd",
+      "userId": "c67f",
+      "budgetId": "bca7",
+      "amount": "22"
     }
   ]
 }

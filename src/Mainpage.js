@@ -5,20 +5,25 @@ import AddBudgetModal from "./components/AddBudgetModal";
 import AddExpenseModal from "./components/AddExpenseModal";
 import ViewExpensesModal from "./components/ViewExpensesModal";
 import BudgetCard from "./components/BudgetCard";
-import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard";
 import TotalBudgetCard from "./components/TotalBudgetCard";
 import { useState } from "react";
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Mainpage() {
-  const userName = localStorage.getItem("userName");
+  
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
-  const cards = []
-  const expense = []
+  const [ userName, setUserName] = useState([])
+
+  useEffect(() => {
+  axios.get(`http://localhost:8000/users/${userId}`)
+       .then((result) => {
+        setUserName(result.data.uname)
+       })
+       .catch((err) => console.log(err));
+      })
 
   function handleLogout() {
     navigate("/");
@@ -37,8 +42,6 @@ export default function Mainpage() {
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
-  const { budgets, getBudgetExpenses } = useBudgets();
-
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true);
     setAddExpenseModalBudgetId(budgetId);
@@ -68,7 +71,7 @@ export default function Mainpage() {
   
   let vari = (data.filter((card) => card.userId === userId))
   let filteredExpenses = expenses.filter((exp) => {
-    return vari.some((card) => exp.userId === userId && exp.budgetcard === card.name);
+    return vari.some((card) => exp.userId === userId && exp.budgetId === card.id);
   });
 
   return (
@@ -108,7 +111,7 @@ export default function Mainpage() {
           {vari.map((card) => {
             let sum = 0
             filteredExpenses.map((expense) => {
-              if(card.name === expense.budgetcard)
+              if(card.id === expense.budgetId)
               sum += parseFloat(expense.amount)
             })
                  return (

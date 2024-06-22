@@ -1,6 +1,5 @@
 import { Form, Modal, Button } from "react-bootstrap";
-import { useRef, useState } from "react";
-import { useBudgets } from "../contexts/BudgetsContext";
+import { useState } from "react";
 import axios from "axios";
 
 export default function AddBudgetModal({ show, handleClose }) {
