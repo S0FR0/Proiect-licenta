@@ -44,7 +44,7 @@ function Piechart()
                 setIds(newIds);
              })
              .catch((err) => console.log(err));
-    }, []);
+    }, [userId]);
   
     useEffect(() => {
     }, [ids]);

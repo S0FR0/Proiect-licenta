@@ -4,7 +4,7 @@
       "id": "c67f",
       "fname": "Sofronea",
       "lname": "Carlos-Marian",
-      "uname": "Carlos",
+      "uname": "Sofronea",
       "email": "sofronea.carlos-marian@student.tuiasi.ro",
       "password": "11111111",
       "cpassword": "12345678"
@@ -40,20 +40,6 @@
       "name": "Card4",
       "budget": "400",
       "sum": 0
-    },
-    {
-      "id": "bca7",
-      "userId": "c67f",
-      "name": "as",
-      "budget": "2112",
-      "sum": 0
-    },
-    {
-      "id": "9cf2",
-      "userId": "c67f",
-      "name": "dfg",
-      "budget": "3443",
-      "sum": 0
     }
   ],
   "expenses": [
@@ -77,13 +63,6 @@
       "userId": "81f9",
       "budgetId": "7828",
       "amount": "401"
-    },
-    {
-      "id": "3739",
-      "description": "dasd",
-      "userId": "c67f",
-      "budgetId": "bca7",
-      "amount": "22"
     }
   ]
 }
