@@ -3,21 +3,17 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function AddBudgetModal({ show, handleClose }) {
-  
-  const reload=()=>{window.location.reload();}
-
+  const reload = () => {
+    window.location.reload();
+  };
 
   const userId = localStorage.getItem("userId");
 
-  const [ fetchData, setFetchData ] = useState({
-    userId:`${userId}`,
-    name:"",
-    budget:"",
-    sum:0
-  })
-
-  const [errors, setErrors] = useState({});
-  const [valid, setValid] = useState(true);
+  const [fetchData, setFetchData] = useState({
+    userId: `${userId}`,
+    name: "",
+    budget: "",
+  });
 
   const createCard = (e) => {
     e.preventDefault();
@@ -31,17 +27,12 @@ export default function AddBudgetModal({ show, handleClose }) {
       isvalid = false;
       validationErrors.lname = "Max spending is required";
     }
-    setErrors(validationErrors);
-    setValid(isvalid);
 
     if (Object.keys(validationErrors).length === 0) {
-      axios
-        .post(`http://localhost:8000/cards`, fetchData)
-        handleClose()
-        .catch((err) => console.log(err));
+      axios.post(`http://localhost:8000/cards`, fetchData);
+      handleClose().catch((err) => console.log(err));
     }
-  }
-
+  };
 
   return (
     <Modal show={show} onHide={handleClose} onExit={reload}>
@@ -53,11 +44,12 @@ export default function AddBudgetModal({ show, handleClose }) {
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control
-            type="text"
-            required
-            onChange={(e) =>
-              setFetchData({ ...fetchData, name: e.target.value })
-            } />
+              type="text"
+              required
+              onChange={(e) =>
+                setFetchData({ ...fetchData, name: e.target.value })
+              }
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>

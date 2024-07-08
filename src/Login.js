@@ -1,7 +1,7 @@
-import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
+import "./style.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -44,8 +44,7 @@ const Login = () => {
             }
           } else if (formData.uname !== "") {
             isvalid = false;
-            if (!validationErrors.log)
-            validationErrors.log = "Wrong username";
+            if (!validationErrors.log) validationErrors.log = "Wrong username";
           }
         });
         setErrors(validationErrors);
@@ -61,13 +60,7 @@ const Login = () => {
           <h2 className="d-flex justify-content-center mb-5">Budget App</h2>
           <h3 className="d-flex justify-content-center">Sign In</h3>
 
-          {valid ? (
-            <></>
-          ) : (
-            <span className="text-danger">
-              {errors.log}
-            </span>
-          )}
+          {valid ? <></> : <span className="text-danger">{errors.log}</span>}
 
           <div className="mb-2">
             <label>Username</label>

@@ -36,21 +36,24 @@ const Reset = () => {
       .then((result) => {
         result.data.map((user) => {
           if (user.uname === formData.uname && user.email === formData.email) {
-              const updatePassword = formData.password;
+            const updatePassword = formData.password;
 
-              axios
-                .patch(`http://localhost:8000/users/${user.id}`, {
-                  password: updatePassword,
-                })
-                .then((data) => {
-                  console.log(data);
-                  navigate('/')
-                });
-             if (user.email !== formData.email || formData.uname !== user.uname){
+            axios
+              .patch(`http://localhost:8000/users/${user.id}`, {
+                password: updatePassword,
+              })
+              .then((data) => {
+                console.log(data);
+                navigate("/");
+              });
+            if (
+              user.email !== formData.email ||
+              formData.uname !== user.uname
+            ) {
               isvalid = false;
               validationErrors.email = "Data inc";
             }
-        }
+          }
         });
         setErrors(validationErrors);
         setValid(isvalid);

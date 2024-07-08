@@ -13,43 +13,33 @@
       "id": "81f9",
       "fname": "Admin",
       "lname": "Admin",
-      "uname": "Admin",
+      "uname": "sdf",
       "email": "admin@gmail.com",
-      "password": "12345678",
+      "password": "11111111",
       "cpassword": "12345678"
     }
   ],
   "cards": [
     {
-      "id": "3796",
-      "userId": "81f9",
-      "name": "Groceries",
-      "budget": "400",
-      "sum": 0
-    },
-    {
       "id": "321c",
       "userId": "81f9",
       "name": "Card3",
-      "budget": "400",
-      "sum": 0
+      "budget": "400"
     },
     {
       "id": "7828",
       "userId": "81f9",
       "name": "Card4",
-      "budget": "400",
-      "sum": 0
+      "budget": "400"
+    },
+    {
+      "id": "026f",
+      "userId": "81f9",
+      "name": "grgfdsb",
+      "budget": "23423"
     }
   ],
   "expenses": [
-    {
-      "id": "de46",
-      "description": "Expense1",
-      "userId": "81f9",
-      "budgetId": "3796",
-      "amount": "100"
-    },
     {
       "id": "0f0f",
       "description": "Expense1",
@@ -58,11 +48,18 @@
       "amount": "300"
     },
     {
-      "id": "21f6",
-      "description": "Expense1",
+      "id": "167b",
+      "description": "exp",
       "userId": "81f9",
       "budgetId": "7828",
-      "amount": "401"
+      "amount": "100"
+    },
+    {
+      "id": "6a00",
+      "description": "fghsd",
+      "userId": "81f9",
+      "budgetId": "026f",
+      "amount": "34"
     }
   ]
 }

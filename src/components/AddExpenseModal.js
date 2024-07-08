@@ -1,48 +1,45 @@
 import { Form, Modal, Button } from "react-bootstrap";
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AddExpenseModal({
-  show,
-  handleClose,
-}) {
-
-  const reload=()=>{
+export default function AddExpenseModal({ show, handleClose }) {
+  const reload = () => {
     window.location.reload();
-  }
+  };
 
   const userId = localStorage.getItem("userId");
 
-  const [ formData, setFormData ] = useState({
+  const [formData, setFormData] = useState({
     description: "",
     userId: `${userId}`,
     budgetId: ``,
-    amount: ""
-  })
+    amount: "",
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:8000/expenses", formData)   
+    axios.post("http://localhost:8000/expenses", formData);
     handleClose();
   }
 
-  const [ data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-  axios.get(`http://localhost:8000/cards`)
-       .then((result) => {
-        setData(result.data)
+    axios
+      .get(`http://localhost:8000/cards`)
+      .then((result) => {
+        setData(result.data);
       })
-           .catch((err) => console.log(err));
-    }, [])
+      .catch((err) => console.log(err));
+  }, []);
 
-    let vari = (data.filter((card) => card.userId === userId))
+  let vari = data.filter((card) => card.userId === userId);
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      axios.post("http://localhost:8000/expenses", formData)   
-      handleClose();
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios.post("http://localhost:8000/expenses", formData);
+    handleClose();
+  }
 
   return (
     <Modal show={show} onHide={handleClose} onExit={reload}>
@@ -54,11 +51,11 @@ export default function AddExpenseModal({
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control
-            type="text"
-            required
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
+              type="text"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="amount">
@@ -76,13 +73,15 @@ export default function AddExpenseModal({
           <Form.Group className="mb-3" controlId="budgetId">
             <Form.Label>Budget</Form.Label>
             <Form.Select
-            onChange={(e) =>
-              setFormData({ ...formData, budgetId: e.target.value })
-            } placeholder="Choose" defaultValue={null}
+              onChange={(e) =>
+                setFormData({ ...formData, budgetId: e.target.value })
+              }
+              placeholder="Choose"
+              defaultValue={null}
             >
               <option>Choose</option>
               {vari.map((budget) => (
-                <option key={budget.id} value={budget.id} >
+                <option key={budget.id} value={budget.id}>
                   {budget.name}
                 </option>
               ))}

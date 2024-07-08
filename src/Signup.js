@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 
-
 const Signup = () => {
   const [formData, setFormData] = useState({
     fname: "",
@@ -14,22 +13,22 @@ const Signup = () => {
     cpassword: "",
   });
 
-  let emails = []
+  let emails = [];
 
   const [data, setData] = useState([]);
 
   axios
-      .get("http://localhost:8000/users")
-      .then((result) => {
-        setData(result.data)
-      })
-      .catch((err) => console.log(err));
-  
-  data.forEach((user) => {
-    emails.push(user.email)
-  })
+    .get("http://localhost:8000/users")
+    .then((result) => {
+      setData(result.data);
+    })
+    .catch((err) => console.log(err));
 
-  console.log(emails)
+  data.forEach((user) => {
+    emails.push(user.email);
+  });
+
+  console.log(emails);
 
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState(true);
@@ -57,7 +56,7 @@ const Signup = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       isvalid = false;
       validationErrors.email = "Email is not valid";
-    } else if (emails.find(email => formData.email === email)){
+    } else if (emails.find((email) => formData.email === email)) {
       isvalid = false;
       validationErrors.email = "Email in use";
     }
@@ -82,8 +81,7 @@ const Signup = () => {
           navigate("/");
         })
         .catch((err) => console.log(err));
-    }
-  };
+    }};
 
   return (
     <div className="signup template d-flex justify-content-center align-items-center vh-100">

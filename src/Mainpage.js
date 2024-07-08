@@ -11,19 +11,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Mainpage() {
-  
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
-  const [ userName, setUserName] = useState([])
+  const [userName, setUserName] = useState([]);
 
   useEffect(() => {
-  axios.get(`http://localhost:8000/users/${userId}`)
-       .then((result) => {
-        setUserName(result.data.uname)
-       })
-       .catch((err) => console.log(err));
+    axios
+      .get(`http://localhost:8000/users/${userId}`)
+      .then((result) => {
+        setUserName(result.data.uname);
       })
+      .catch((err) => console.log(err));
+  });
 
   function handleLogout() {
     navigate("/");
@@ -31,7 +31,7 @@ export default function Mainpage() {
   }
 
   function handleSettings() {
-    navigate("/settings")
+    navigate("/settings");
   }
 
   function handleChart() {
@@ -47,31 +47,32 @@ export default function Mainpage() {
     setAddExpenseModalBudgetId(budgetId);
   }
 
-  const [ data, setData] = useState([])
-  const [ expenses, setExpenses] = useState([])
-
+  const [data, setData] = useState([]);
+  const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/cards")
-         .then((result) => {
-          setData(result.data)
-    })
-         .catch((err) => console.log(err));
-  }, [])
+    axios
+      .get("http://localhost:8000/cards")
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  
   useEffect(() => {
-    axios.get("http://localhost:8000/expenses")
-         .then((result) => {
-          setExpenses(result.data)
-    })
-         .catch((err) => console.log(err));
-  }, [])
+    axios
+      .get("http://localhost:8000/expenses")
+      .then((result) => {
+        setExpenses(result.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  
-  let vari = (data.filter((card) => card.userId === userId))
+  let vari = data.filter((card) => card.userId === userId);
   let filteredExpenses = expenses.filter((exp) => {
-    return vari.some((card) => exp.userId === userId && exp.budgetId === card.id);
+    return vari.some(
+      (card) => exp.userId === userId && exp.budgetId === card.id
+    );
   });
 
   return (
@@ -88,7 +89,10 @@ export default function Mainpage() {
 
           <Navbar>
             <NavDropdown title={userName}>
-              <NavDropdown.Item variant="outline-urgent" onClick={handleSettings}>
+              <NavDropdown.Item
+                variant="outline-urgent"
+                onClick={handleSettings}
+              >
                 Settings
               </NavDropdown.Item>
               <NavDropdown.Item variant="outline-urgent" onClick={handleChart}>
@@ -107,24 +111,26 @@ export default function Mainpage() {
             gap: "1rem",
             alignItems: "flex-start",
           }}
-        >   
+        >
           {vari.map((card) => {
-            let sum = 0
+            let sum = 0;
             filteredExpenses.map((expense) => {
-              if(card.id === expense.budgetId)
-              sum += parseFloat(expense.amount)
-            })
-                 return (
-                  <BudgetCard
-                    key={card.id}
-                    name={card.name}
-                    amount={sum}
-                    max={card.budget}
-                    onAddExpenseClick={() => openAddExpenseModal(card.id)}
-                    onViewExpensesClick={() => setViewExpensesModalBudgetId(card.id)}
-                  />);
-                })
+              if (card.id === expense.budgetId)
+                sum += parseFloat(expense.amount);
+            });
+            return (
+              <BudgetCard
+                key={card.id}
+                name={card.name}
+                amount={sum}
+                max={card.budget}
+                onAddExpenseClick={() => openAddExpenseModal(card.id)}
+                onViewExpensesClick={() =>
+                  setViewExpensesModalBudgetId(card.id)
                 }
+              />
+            );
+          })}
 
           <TotalBudgetCard />
         </div>
